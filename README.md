@@ -201,6 +201,10 @@ The instruction opcode and ALU select code are separate encodings. The control u
 - Control-unit-driven ALU, memory access, branching, jumping, and halt control.
 - Single-cycle, non-pipelined implementation.
 
+## waveforms
+<img width="755" height="380" alt="cpu_execution" src="https://github.com/user-attachments/assets/10e34f48-a598-47f2-b317-a9f324c16e60" />
+
+
 
 ## Future Improvements
 
