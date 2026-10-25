@@ -152,6 +152,56 @@ Simulation evidence and detailed test results can be added as they are documente
 - Xilinx Vivado
 - Git and GitHub
 
+## Instruction Set Architecture (ISA)
+
+The processor uses a custom 32-bit instruction format with a 16-bit datapath. Instructions contain a 4-bit opcode, three 4-bit register fields, and a 16-bit immediate field. The opcode determines the operation performed by the control unit.
+
+### Instruction Format
+
+| Field | Bits | Description |
+|---|---|---|
+| Opcode | `[31:28]` | Selects the instruction |
+| Destination register (`rd`) | `[27:24]` | Destination register field |
+| Source register 1 (`rs1`) | `[23:20]` | First source register field |
+| Source register 2 (`rs2`) | `[19:16]` | Second source register field |
+| Immediate (`imm`) | `[15:0]` | 16-bit immediate field |
+
+### Supported Instructions
+
+| Opcode | Mnemonic | Description |
+|---|---|---|
+| `0x0` | Reserved / NOP-like | No control signals asserted |
+| `0x1` | ADD | Adds two operands |
+| `0x2` | SUB | Subtracts the second operand from the first |
+| `0x3` | AND | Bitwise AND |
+| `0x4` | OR | Bitwise OR |
+| `0x5` | XOR | Bitwise XOR |
+| `0x6` | NOT | Bitwise complement of operand A |
+| `0x7` | ADDI | Adds an immediate operand |
+| `0x8` | LOAD | Reads data memory and writes the result back to a register |
+| `0x9` | STORE | Writes register data to data memory |
+| `0xA` | BEQ | Branch-equal control; uses subtraction for comparison |
+| `0xB` | BNE | Branch-not-equal control; uses subtraction for comparison |
+| `0xC` | JMP | Activates jump control |
+| `0xD` | SLL | Logical left shift |
+| `0xE` | SRL | Logical right shift |
+| `0xF` | HALT | Activates the halt signal |
+
+### ALU Operations
+
+The ALU supports addition, subtraction, bitwise logic, increment, decrement, logical shifts, equality comparison, and operand pass-through operations. It also generates zero, carry, overflow, and negative flags.
+
+The instruction opcode and ALU select code are separate encodings. The control unit translates instruction opcodes into ALU select signals.
+
+### Architecture Notes
+
+- 16-bit data path and 32-bit instructions.
+- 16 general-purpose register addresses, encoded using 4-bit register fields.
+- Separate instruction and data memory modules.
+- Control-unit-driven ALU, memory access, branching, jumping, and halt control.
+- Single-cycle, non-pipelined implementation.
+
+
 ## Future Improvements
 
 - Add a five-stage pipeline: IF, ID, EX, MEM, and WB.
