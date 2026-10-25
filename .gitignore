@@ -1,0 +1,26 @@
+
+# Vivado generated directories
+cpu_16.cache/
+cpu_16.hw/
+cpu_16.ip_user_files/
+cpu_16.runs/
+cpu_16.sim/
+
+# Vivado temporary and log files
+.Xil/
+*.jou
+*.log
+*.str
+*.wdb
+*.vcd
+
+# Generated hardware outputs
+*.bit
+*.ltx
+*.dcp
+*.pb
+
+# Operating system files
+Thumbs.db
+.DS_Store
+
